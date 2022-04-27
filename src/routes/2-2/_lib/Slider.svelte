@@ -3,7 +3,7 @@
 	import { progress, activeSlider } from './progress';
 	export let id;
 
-	let value = derived(
+	const value = derived(
 		[progress, activeSlider],
 		([$p, $a], set) => {
 			if (id !== $a) {
