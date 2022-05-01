@@ -4,9 +4,11 @@
 	import Slider from './_lib/Slider.svelte';
 	import { activeSlider, progress } from './_lib/progress';
 	import { spring } from 'svelte/motion';
-	const number_of_sliders = 10;
-	let sliders = Array.from(Array(number_of_sliders).keys()).map((id) => ({
+	const initial_number_of_sliders = 10;
+
+	let sliders = Array.from(Array(initial_number_of_sliders).keys()).map((id) => ({
 		id,
+		el: null,
 		delay: derived(
 			[progress, activeSlider],
 			([$p, $a], set) => {
@@ -26,6 +28,10 @@
 			slider.value.damping = 1 - ((diff / total) * 0.5 + 0.45);
 			slider.value.set(delayedValue);
 		});
+
+		slider.value.subscribe((v) => {
+			if (slider.el) slider.el.value = v;
+		});
 	});
 
 	onMount(() => activeSlider.set(-1));
@@ -33,9 +39,9 @@
 
 <h1>2-4: Relative Animation With Controlled State</h1>
 <div>
-	{#each sliders as { id, value }}
+	{#each sliders as { id, el }}
 		<Slider
-			{value}
+			bind:this={el}
 			on:mousedown={() => {
 				activeSlider.set(id);
 			}}
