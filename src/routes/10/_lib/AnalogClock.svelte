@@ -1,9 +1,8 @@
 <script>
 	import { spring } from 'svelte/motion';
 	import { utc } from './timeStores';
-	export let time;
 
-	const tween = spring(toDegrees(time), { stiffness: 0.5, damping: 0.2 });
+	const tween = spring(toDegrees($utc), { stiffness: 0.5, damping: 0.2 });
 
 	$: tween.set(toDegrees($utc));
 

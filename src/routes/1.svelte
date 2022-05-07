@@ -1,11 +1,12 @@
 <script>
 	import rc from 'randomcolor';
+	import { writable } from 'svelte/store';
 	import { spring } from 'svelte/motion';
 	let boxes = Array.from(Array(10).keys());
 
 	let progress = spring(0, { damping: 0.9, stiffness: 0.1 });
+	// let progress = writable(0);
 
-	/**@type {(e:WheelEvent) => void}*/
 	function handleScroll(e) {
 		const pct =
 			((document.documentElement.scrollTop + document.body.scrollTop) /
@@ -16,9 +17,11 @@
 	}
 </script>
 
-<svelte:window on:wheel|passive={handleScroll} />
+<svelte:head>
+	<title>Progress Bar</title>
+</svelte:head>
+<svelte:window on:scroll={handleScroll} />
 
-<h1>1-1: Progress Bar</h1>
 <progress value={$progress} max="100" />
 {#each boxes as box}
 	{@const color = rc({ seed: box })}

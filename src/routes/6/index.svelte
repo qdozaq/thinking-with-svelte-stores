@@ -54,7 +54,9 @@
 	});
 </script>
 
-<h1>2-5: Dots Example</h1>
+<svelte:head>
+	<title>Dots Example</title>
+</svelte:head>
 <h3>
 	Shared Spring: <div class="shared square" />
 	Individual Springs:

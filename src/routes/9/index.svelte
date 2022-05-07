@@ -6,7 +6,9 @@
 	onMount(() => activeSlider.set(-1));
 </script>
 
-<h1>2-2: Relative Stagger</h1>
+<svelte:head>
+	<title>Relative Stagger</title>
+</svelte:head>
 <div>
 	{#each sliders as slider}
 		<Slider id={slider} />

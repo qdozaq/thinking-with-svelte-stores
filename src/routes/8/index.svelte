@@ -5,7 +5,7 @@
 
 	// const hover = writable(false);
 	let hover = false;
-	const activeIndex = writable(-1);
+	let activeIndex = -1;
 	const closePosition = -8;
 	const openPosition = -3;
 	const menuItems = ['Home', 'About', 'Memes', 'Portfolio', 'Blog'].map((name, index) => ({
@@ -13,41 +13,39 @@
 		index,
 		/**@type {HTMLElement}*/
 		el: null,
-		delay: derived(
-			activeIndex,
-			($active, set) => {
-				let offset = index === $active ? 1 : 0;
-				let x = $active !== -1 && hover ? openPosition : closePosition;
-				setTimeout(() => set(x + offset), Math.abs($active - index) * 100);
-			},
-			closePosition
-		),
 		x: tweened(closePosition, { duration: 800, easing: elasticOut })
 	}));
 
 	menuItems.forEach((item) => {
-		item.delay.subscribe((x) => {
-			item.x.set(x);
-		});
 		item.x.subscribe((x) => {
 			if (item.el) {
 				item.el.style.transform = `translateX(${x}rem)`;
 			}
 		});
 	});
+
+	// almost works like the derived store method, but less control over what gets subscribed to
+	$: {
+		menuItems.forEach((item) => {
+			let offset = item.index === activeIndex ? 1 : 0;
+			let x = activeIndex !== -1 && hover ? openPosition : closePosition;
+			setTimeout(() => item.x.set(x + offset), Math.abs(activeIndex - item.index) * 100);
+		});
+	}
 </script>
 
-<h1>2-6: Menu Drawer</h1>
+<svelte:head>
+	<title>Menu Drawer Without Derived Store</title>
+</svelte:head>
 <aside
 	on:mouseenter={() => (hover = true)}
 	on:mouseleave={() => {
 		hover = false;
-		activeIndex.set(-1);
+		activeIndex = -1;
 	}}
 >
 	{#each menuItems as item}
-		<button bind:this={item.el} on:mouseenter={() => activeIndex.set(item.index)}
-			>{item.name}</button
+		<button bind:this={item.el} on:mouseenter={() => (activeIndex = item.index)}>{item.name}</button
 		>
 	{/each}
 </aside>

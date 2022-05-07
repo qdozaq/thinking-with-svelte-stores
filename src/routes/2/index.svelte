@@ -5,7 +5,9 @@
 	let bars = Array.from(Array(10).keys());
 </script>
 
-<h1>2-1: Staggered Animations</h1>
+<svelte:head>
+	<title>Staggered Animations</title>
+</svelte:head>
 <div>
 	<input type="range" max="100" bind:value={$progress} />
 	{#each bars as bar}

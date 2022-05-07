@@ -37,7 +37,9 @@
 	onMount(() => activeSlider.set(-1));
 </script>
 
-<h1>2-4: Relative Animation With Controlled State</h1>
+<svelte:head>
+	<title>Relative Animation With Controlled State</title>
+</svelte:head>
 <div>
 	{#each sliders as { id, el }}
 		<Slider
