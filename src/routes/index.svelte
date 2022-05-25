@@ -1,14 +1,10 @@
 <script>
 	import Circle from '$lib/components/Circle.svelte';
+	import { browser } from '$app/env';
 	import { derived, writable } from 'svelte/store';
 	import { spring } from 'svelte/motion';
 
-	const mouseCoords = writable({ x: 200, y: 200 });
-	const numCircles = 3;
-	const circleIds = Array.from(Array(numCircles).keys());
-
-	const sharedSpring = spring({ x: 0, y: 0 }, { stiffness: 0.005, damping: 0.1 });
-	$: sharedSpring.set($mouseCoords);
+	const mouseCoords = spring({ x: 0, y: 0 }, { stiffness: 0.005, damping: 0.1 });
 
 	let c1 = getDelayed(100);
 	let c2 = getDelayed(200);
@@ -17,9 +13,9 @@
 
 	function getDelayed(delay) {
 		return derived(
-			sharedSpring,
-			($s, set) => {
-				setTimeout(() => set($s), delay);
+			mouseCoords,
+			($c, set) => {
+				setTimeout(() => browser && requestAnimationFrame(() => set($c)), delay);
 			},
 			0
 		);

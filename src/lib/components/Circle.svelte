@@ -4,8 +4,8 @@
 	export let color;
 	export let radius;
 	export let textSize;
-	export let x;
-	export let y;
+	export let x = 0;
+	export let y = 0;
 	export let dx = 0;
 	export let dy = 0;
 </script>
