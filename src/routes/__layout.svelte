@@ -74,7 +74,9 @@
 </main>
 <footer>
 	<button class="back" on:click={back}>👈</button>
-	<a href="/" class="url">thinking-with-svelte-stores.vercel.com</a>
+	<a href="https://thinking-with-svelte-stores.vercel.app" class="url"
+		>thinking-with-svelte-stores.vercel.app</a
+	>
 	<button class="forward" on:click={forward}>👉</button>
 </footer>
 
