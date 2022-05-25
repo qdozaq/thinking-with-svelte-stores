@@ -2,6 +2,7 @@
 	import { derived, writable, get } from 'svelte/store';
 	import { tweened } from 'svelte/motion';
 	import { elasticOut } from 'svelte/easing';
+	import ReplLink from '$lib/components/ReplLink.svelte';
 
 	// const hover = writable(false);
 	let hover = false;
@@ -31,7 +32,9 @@
 		});
 		item.x.subscribe((x) => {
 			if (item.el) {
-				item.el.style.transform = `translateX(${x}rem)`;
+				requestAnimationFrame(() => {
+					item.el.style.transform = `translateX(${x}rem)`;
+				});
 			}
 		});
 	});
@@ -40,6 +43,8 @@
 <svelte:head>
 	<title>Menu Drawer</title>
 </svelte:head>
+
+<ReplLink repl="https://svelte.dev/repl/4775989af51c4801aa111edb37fbf56e?version=3.48.0" />
 <aside
 	on:mouseenter={() => (hover = true)}
 	on:mouseleave={() => {

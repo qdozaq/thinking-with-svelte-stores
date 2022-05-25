@@ -1,18 +1,18 @@
 <script>
 	import { derived } from 'svelte/store';
+	import { progress } from './_progress';
 	export let delay = 0;
-	export let progress;
 
 	let value = derived(
 		progress,
 		($p, set) => {
-			setTimeout(() => set($p), delay);
+			setTimeout(() => requestAnimationFrame(() => set($p)), delay);
 		},
 		0
 	);
 </script>
 
-<progress max="100" value={$value} />
+<progress max="1000" value={$value} />
 
 <style>
 	progress {

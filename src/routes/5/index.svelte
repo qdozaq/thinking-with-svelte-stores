@@ -1,9 +1,10 @@
 <script>
 	import { derived } from 'svelte/store';
 	import { onMount } from 'svelte/internal';
-	import Slider from './_lib/Slider.svelte';
-	import { activeSlider, progress } from './_lib/progress';
+	import Slider from './_Slider.svelte';
+	import { activeSlider, progress } from './_progress';
 	import { spring } from 'svelte/motion';
+	import ReplLink from '$lib/components/ReplLink.svelte';
 	const initial_number_of_sliders = 10;
 
 	let sliders = Array.from(Array(initial_number_of_sliders).keys()).map((id) => ({
@@ -30,7 +31,10 @@
 		});
 
 		slider.value.subscribe((v) => {
-			if (slider.el) slider.el.value = v;
+			if (slider.el)
+				requestAnimationFrame(() => {
+					slider.el.value = v;
+				});
 		});
 	});
 
@@ -40,6 +44,9 @@
 <svelte:head>
 	<title>Relative Animation With Controlled State</title>
 </svelte:head>
+
+<ReplLink repl="https://svelte.dev/repl/4fade1d50ec04e5682f89e2007ba7e7d?version=3.48.0" />
+
 <div>
 	{#each sliders as { id, el }}
 		<Slider

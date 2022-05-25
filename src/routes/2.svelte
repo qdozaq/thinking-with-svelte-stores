@@ -1,12 +1,10 @@
 <script>
 	import ReplLink from '$lib/components/ReplLink.svelte';
-	import { writable } from 'svelte/store';
 	import { spring } from 'svelte/motion';
 
 	let boxes = Array.from(Array(10).keys());
 
-	//let progress = spring(0, { damping: 0.9, stiffness: 0.1 });
-	let progress = writable(0);
+	let progress = spring(0, { damping: 0.9, stiffness: 0.1 });
 
 	function handleScroll(e) {
 		const pct =
@@ -19,7 +17,7 @@
 </script>
 
 <svelte:head>
-	<title>Progress Bar</title>
+	<title>Progress Bar - with spring</title>
 </svelte:head>
 <svelte:window on:scroll={handleScroll} />
 

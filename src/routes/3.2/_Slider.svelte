@@ -1,13 +1,12 @@
 <script>
 	import { derived } from 'svelte/store';
-	import { progress, activeSlider } from './progress';
+	import { progress, activeSlider } from './_progress';
 	export let id;
-
 	const value = derived(
 		[progress, activeSlider],
-		([$p, $a], set) => {
-			if (id !== $a) {
-				setTimeout(() => set($p), Math.abs(id - $a) * 100);
+		([$progress, $active], set) => {
+			if (id !== $active) {
+				setTimeout(() => requestAnimationFrame(() => set($progress)), Math.abs(id - $active) * 100);
 			}
 		},
 		0
@@ -16,7 +15,7 @@
 
 <input
 	type="range"
-	max="1000"
+	max="1500"
 	value={$value}
 	on:mousedown={() => {
 		activeSlider.set(id);

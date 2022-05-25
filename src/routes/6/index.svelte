@@ -1,6 +1,7 @@
 <script>
 	import { derived, writable } from 'svelte/store';
 	import { spring } from 'svelte/motion';
+	import ReplLink from '$lib/components/ReplLink.svelte';
 
 	const mouseCoords = writable({ x: 0, y: 0 });
 	const number_of_dots = 5;
@@ -23,8 +24,10 @@
 
 	sharedMotionDots.forEach((dot) => {
 		dot.coords.subscribe(({ x, y }) => {
-			dot.el?.setAttribute('cx', x);
-			dot.el?.setAttribute('cy', y);
+			requestAnimationFrame(() => {
+				dot.el?.setAttribute('cx', x);
+				dot.el?.setAttribute('cy', y);
+			});
 		});
 	});
 
@@ -48,8 +51,10 @@
 			dot.spring.set(delayedValue);
 		});
 		dot.spring.subscribe((coord) => {
-			dot.el?.setAttribute('cx', coord.x);
-			dot.el?.setAttribute('cy', coord.y);
+			requestAnimationFrame(() => {
+				dot.el?.setAttribute('cx', coord.x);
+				dot.el?.setAttribute('cy', coord.y);
+			});
 		});
 	});
 </script>
@@ -57,6 +62,8 @@
 <svelte:head>
 	<title>Dots Example</title>
 </svelte:head>
+
+<ReplLink repl="https://svelte.dev/repl/cb919cefd8644e0a873a41bf1f3e2ff7?version=3.48.0" />
 <h3>
 	Shared Spring: <div class="shared square" />
 	Individual Springs:

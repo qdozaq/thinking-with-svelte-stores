@@ -85,6 +85,7 @@
 		margin: 1rem;
 	}
 	nav {
+		z-index: 2;
 		width: 100vw;
 		display: flex;
 		position: relative;

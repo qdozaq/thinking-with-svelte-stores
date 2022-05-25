@@ -1,7 +1,7 @@
 <script>
 	import { spring } from 'svelte/motion';
 	import { derived, get } from 'svelte/store';
-	import { progress, activeSlider } from './progress';
+	import { progress, activeSlider } from './_progress';
 	export let id;
 	export let total;
 
@@ -19,7 +19,7 @@
 	$: {
 		let diff = Math.abs(id - $activeSlider);
 		value.damping = 1 - ((diff / total) * 0.5 + 0.5);
-		value.set($delayedValue);
+		requestAnimationFrame(() => value.set($delayedValue));
 	}
 </script>
 
