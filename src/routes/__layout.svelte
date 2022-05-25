@@ -104,13 +104,13 @@
 		color: white;
 	}
 
-	a {
+	nav > a {
 		flex: 1;
 		text-align: center;
 	}
 
 	.selector,
-	a {
+	nav > a {
 		border-radius: 0 0 40% 40%;
 	}
 
@@ -145,6 +145,5 @@
 	.url {
 		text-align: center;
 		font-size: 1.5rem;
-		/* pointer-events: none; */
 	}
 </style>
