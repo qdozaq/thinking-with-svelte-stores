@@ -1,0 +1,303 @@
+{
+  ".svelte-kit/runtime/client/start.js": {
+    "file": "start-0c250c74.js",
+    "src": ".svelte-kit/runtime/client/start.js",
+    "isEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_index-7a6b9264.js",
+      "_singletons-ffa0f43b.js"
+    ],
+    "dynamicImports": [
+      "src/routes/__layout.svelte",
+      ".svelte-kit/runtime/components/error.svelte",
+      "src/routes/1.svelte",
+      "src/routes/10/index.svelte",
+      "src/routes/2/index.svelte",
+      "src/routes/4/index.svelte",
+      "src/routes/5/index.svelte",
+      "src/routes/6/index.svelte",
+      "src/routes/7/index.svelte",
+      "src/routes/8/index.svelte",
+      "src/routes/9/index.svelte",
+      "src/routes/index.svelte"
+    ]
+  },
+  "src/routes/__layout.svelte": {
+    "file": "pages/__layout.svelte-cddfd5a0.js",
+    "src": "src/routes/__layout.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_singletons-ffa0f43b.js",
+      "_index-30f8b6d8.js",
+      "_index-056e7a80.js",
+      "_index-33783dad.js",
+      "_index-7a6b9264.js"
+    ],
+    "dynamicImports": [
+      "src/routes/1.svelte",
+      "src/routes/index.svelte",
+      "src/routes/10/index.svelte",
+      "src/routes/2/index.svelte",
+      "src/routes/4/index.svelte",
+      "src/routes/5/index.svelte",
+      "src/routes/6/index.svelte",
+      "src/routes/7/index.svelte",
+      "src/routes/8/index.svelte",
+      "src/routes/9/index.svelte",
+      "src/routes/10/_lib/AnalogClock.svelte",
+      "src/routes/10/_lib/DigitalClock.svelte",
+      "src/routes/2/_lib/Bar.svelte",
+      "_Slider-dc4af239.js",
+      "src/routes/5/_lib/Slider.svelte",
+      "_Slider-dfb3d681.js"
+    ],
+    "css": [
+      "assets/pages/__layout.svelte-b766170f.css"
+    ]
+  },
+  ".svelte-kit/runtime/components/error.svelte": {
+    "file": "error.svelte-0d98939a.js",
+    "src": ".svelte-kit/runtime/components/error.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js"
+    ]
+  },
+  "src/routes/1.svelte": {
+    "file": "pages/1.svelte-77793d56.js",
+    "src": "src/routes/1.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_index-056e7a80.js",
+      "_index-7a6b9264.js"
+    ],
+    "css": [
+      "assets/pages/1.svelte-ed8358e4.css"
+    ]
+  },
+  "src/routes/10/index.svelte": {
+    "file": "pages/10/index.svelte-7e1897db.js",
+    "src": "src/routes/10/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_timeStores-79ef677c.js",
+      "src/routes/10/_lib/DigitalClock.svelte",
+      "src/routes/10/_lib/AnalogClock.svelte",
+      "_index-7a6b9264.js",
+      "_index-056e7a80.js"
+    ]
+  },
+  "src/routes/2/index.svelte": {
+    "file": "pages/2/index.svelte-53ecf227.js",
+    "src": "src/routes/2/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_index-056e7a80.js",
+      "src/routes/2/_lib/Bar.svelte",
+      "_index-7a6b9264.js"
+    ],
+    "css": [
+      "assets/pages/2/index.svelte-fb6747ea.css"
+    ]
+  },
+  "src/routes/4/index.svelte": {
+    "file": "pages/4/index.svelte-9fb21d2b.js",
+    "src": "src/routes/4/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_Slider-dc4af239.js",
+      "_index-056e7a80.js",
+      "_index-7a6b9264.js"
+    ],
+    "css": [
+      "assets/pages/9/index.svelte-ddf2e100.css"
+    ]
+  },
+  "src/routes/5/index.svelte": {
+    "file": "pages/5/index.svelte-b4191921.js",
+    "src": "src/routes/5/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_index-7a6b9264.js",
+      "src/routes/5/_lib/Slider.svelte",
+      "_index-056e7a80.js"
+    ],
+    "css": [
+      "assets/pages/9/index.svelte-ddf2e100.css"
+    ]
+  },
+  "src/routes/6/index.svelte": {
+    "file": "pages/6/index.svelte-c9970b62.js",
+    "src": "src/routes/6/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_index-7a6b9264.js",
+      "_index-056e7a80.js"
+    ],
+    "css": [
+      "assets/pages/6/index.svelte-cd2c7011.css"
+    ]
+  },
+  "src/routes/7/index.svelte": {
+    "file": "pages/7/index.svelte-1044070e.js",
+    "src": "src/routes/7/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_index-7a6b9264.js",
+      "_index-056e7a80.js",
+      "_index-33783dad.js"
+    ],
+    "css": [
+      "assets/pages/7/index.svelte-db54b58e.css"
+    ]
+  },
+  "src/routes/8/index.svelte": {
+    "file": "pages/8/index.svelte-74c3d581.js",
+    "src": "src/routes/8/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_index-056e7a80.js",
+      "_index-33783dad.js",
+      "_index-7a6b9264.js"
+    ],
+    "css": [
+      "assets/pages/7/index.svelte-db54b58e.css"
+    ]
+  },
+  "src/routes/9/index.svelte": {
+    "file": "pages/9/index.svelte-77fc0c1f.js",
+    "src": "src/routes/9/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_Slider-dfb3d681.js",
+      "_index-7a6b9264.js",
+      "_index-056e7a80.js"
+    ],
+    "css": [
+      "assets/pages/9/index.svelte-ddf2e100.css"
+    ]
+  },
+  "src/routes/index.svelte": {
+    "file": "pages/index.svelte-d91ae4e4.js",
+    "src": "src/routes/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js"
+    ]
+  },
+  "_index-30f8b6d8.js": {
+    "file": "chunks/index-30f8b6d8.js"
+  },
+  "_index-7a6b9264.js": {
+    "file": "chunks/index-7a6b9264.js",
+    "imports": [
+      "_index-30f8b6d8.js"
+    ]
+  },
+  "_singletons-ffa0f43b.js": {
+    "file": "chunks/singletons-ffa0f43b.js"
+  },
+  "_index-056e7a80.js": {
+    "file": "chunks/index-056e7a80.js",
+    "imports": [
+      "_index-7a6b9264.js",
+      "_index-30f8b6d8.js"
+    ]
+  },
+  "_index-33783dad.js": {
+    "file": "chunks/index-33783dad.js",
+    "imports": [
+      "_index-30f8b6d8.js"
+    ]
+  },
+  "_timeStores-79ef677c.js": {
+    "file": "chunks/timeStores-79ef677c.js",
+    "imports": [
+      "_index-7a6b9264.js"
+    ]
+  },
+  "src/routes/10/_lib/DigitalClock.svelte": {
+    "file": "chunks/DigitalClock-50529d8d.js",
+    "src": "src/routes/10/_lib/DigitalClock.svelte",
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_timeStores-79ef677c.js",
+      "_index-7a6b9264.js"
+    ]
+  },
+  "src/routes/10/_lib/AnalogClock.svelte": {
+    "file": "chunks/AnalogClock-57c000ce.js",
+    "src": "src/routes/10/_lib/AnalogClock.svelte",
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_index-056e7a80.js",
+      "_timeStores-79ef677c.js",
+      "_index-7a6b9264.js"
+    ],
+    "css": [
+      "assets/AnalogClock-e9fcf1f8.css"
+    ]
+  },
+  "src/routes/2/_lib/Bar.svelte": {
+    "file": "chunks/Bar-756d3ea9.js",
+    "src": "src/routes/2/_lib/Bar.svelte",
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_index-7a6b9264.js"
+    ],
+    "css": [
+      "assets/Bar-32d2bd01.css"
+    ]
+  },
+  "_Slider-dc4af239.js": {
+    "file": "chunks/Slider-dc4af239.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_index-056e7a80.js",
+      "_index-7a6b9264.js"
+    ]
+  },
+  "src/routes/5/_lib/Slider.svelte": {
+    "file": "chunks/Slider-f655c176.js",
+    "src": "src/routes/5/_lib/Slider.svelte",
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js"
+    ]
+  },
+  "_Slider-dfb3d681.js": {
+    "file": "chunks/Slider-dfb3d681.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-30f8b6d8.js",
+      "_index-7a6b9264.js",
+      "_index-056e7a80.js"
+    ]
+  }
+}

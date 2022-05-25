@@ -74,7 +74,7 @@
 </main>
 <footer>
 	<button class="back" on:click={back}>👈</button>
-	<div class="url">store-animations.vercel.com</div>
+	<a href="/" class="url">thinking-with-svelte-stores.vercel.com</a>
 	<button class="forward" on:click={forward}>👉</button>
 </footer>
 
@@ -143,6 +143,6 @@
 	.url {
 		text-align: center;
 		font-size: 1.5rem;
-		pointer-events: none;
+		/* pointer-events: none; */
 	}
 </style>
