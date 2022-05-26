@@ -3,8 +3,10 @@
 </svelte:head>
 
 <div>
-	<a href="https://doza.design">doza.design</a> |
-	<a href="https://github.com/qdozaq/portfolio-site">github</a>
+	<a target="_blank" rel="noopener noreferrer" href="https://doza.design">doza.design</a> |
+	<a target="_blank" rel="noopener noreferrer" href="https://github.com/qdozaq/portfolio-site"
+		>github</a
+	>
 </div>
 
 <iframe title="doza.design" src="https://doza.design" />
