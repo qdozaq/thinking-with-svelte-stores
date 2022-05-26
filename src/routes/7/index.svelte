@@ -1,75 +1,69 @@
 <script>
-	import { derived, writable, get } from 'svelte/store';
-	import { tweened } from 'svelte/motion';
-	import { elasticOut } from 'svelte/easing';
+	import { derived } from 'svelte/store';
+	import { onMount } from 'svelte/internal';
+	import Slider from './_Slider.svelte';
+	import { activeSlider, progress } from './_progress';
+	import { spring } from 'svelte/motion';
 	import ReplLink from '$lib/components/ReplLink.svelte';
+	const initial_number_of_sliders = 10;
 
-	// const hover = writable(false);
-	let hover = false;
-	const activeIndex = writable(-1);
-	const closePosition = -8;
-	const openPosition = -3;
-	const menuItems = ['Home', 'About', 'Memes', 'Portfolio', 'Blog'].map((name, index) => ({
-		name,
-		index,
-		/**@type {HTMLElement}*/
+	let sliders = Array.from(Array(initial_number_of_sliders).keys()).map((id) => ({
+		id,
 		el: null,
 		delay: derived(
-			activeIndex,
-			($active, set) => {
-				let offset = index === $active ? 1 : 0;
-				let x = $active !== -1 && hover ? openPosition : closePosition;
-				setTimeout(() => set(x + offset), Math.abs($active - index) * 100);
+			[progress, activeSlider],
+			([$p, $a], set) => {
+				if (id !== $a) {
+					setTimeout(() => set($p), Math.abs(id - $a) * 100);
+				}
 			},
-			closePosition
+			0
 		),
-		x: tweened(closePosition, { duration: 800, easing: elasticOut })
+		value: spring(0, { stiffness: 0.1 })
 	}));
 
-	menuItems.forEach((item) => {
-		item.delay.subscribe((x) => {
-			item.x.set(x);
+	sliders.forEach((slider) => {
+		slider.delay.subscribe((delayedValue) => {
+			let total = sliders.length;
+			let diff = Math.abs(slider.id - $activeSlider);
+			slider.value.damping = 1 - ((diff / total) * 0.5 + 0.45);
+			slider.value.set(delayedValue);
 		});
-		item.x.subscribe((x) => {
-			if (item.el) {
+
+		slider.value.subscribe((v) => {
+			if (slider.el)
 				requestAnimationFrame(() => {
-					item.el.style.transform = `translateX(${x}rem)`;
+					slider.el.value = v;
 				});
-			}
 		});
 	});
+
+	onMount(() => activeSlider.set(-1));
 </script>
 
 <svelte:head>
-	<title>Menu Drawer</title>
+	<title>Relative Animation With Controlled State</title>
 </svelte:head>
 
-<ReplLink repl="https://svelte.dev/repl/4775989af51c4801aa111edb37fbf56e?version=3.48.0" />
-<aside
-	on:mouseenter={() => (hover = true)}
-	on:mouseleave={() => {
-		hover = false;
-		activeIndex.set(-1);
-	}}
->
-	{#each menuItems as item}
-		<button bind:this={item.el} on:mouseenter={() => activeIndex.set(item.index)}
-			>{item.name}</button
-		>
+<ReplLink repl="https://svelte.dev/repl/4fade1d50ec04e5682f89e2007ba7e7d?version=3.48.0" />
+
+<div>
+	{#each sliders as { id, el }}
+		<Slider
+			bind:this={el}
+			on:mousedown={() => {
+				activeSlider.set(id);
+			}}
+			on:input={(e) => e.target && progress.set(e.target.valueAsNumber)}
+		/>
 	{/each}
-</aside>
+</div>
 
 <style>
-	aside {
-		width: 10rem;
-		padding: 1rem 0;
+	div {
+		margin: 0 3rem;
 		display: flex;
 		flex-direction: column;
-	}
-	button {
-		transform: translateX(-8rem);
-		padding: 1rem;
-		border-radius: 1rem;
-		margin-bottom: 0.5rem;
+		width: auto;
 	}
 </style>

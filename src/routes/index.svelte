@@ -4,20 +4,27 @@
 	import { derived, writable } from 'svelte/store';
 	import { spring } from 'svelte/motion';
 
-	const mouseCoords = spring({ x: 0, y: 0 }, { stiffness: 0.005, damping: 0.1 });
+	const baseOffest = { x: 50, y: 50 };
+	const mouseCoords = spring(baseOffest, { stiffness: 0.005, damping: 0.1 });
 
-	let c1 = getDelayed(100);
-	let c2 = getDelayed(200);
-	let c3 = getDelayed(300);
-	let c4 = getDelayed(400);
+	const inc = 100;
+	let c1 = getDelayed(inc);
+	let c2 = getDelayed(inc * 2);
+	let c3 = getDelayed(inc * 3);
+	let c4 = getDelayed(inc * 4);
 
 	function getDelayed(delay) {
 		return derived(
 			mouseCoords,
 			($c, set) => {
-				setTimeout(() => browser && requestAnimationFrame(() => set($c)), delay);
+				setTimeout(
+					() =>
+						browser &&
+						requestAnimationFrame(() => set({ x: $c.x + baseOffest.x, y: $c.y + baseOffest.y })),
+					delay
+				);
 			},
-			0
+			baseOffest
 		);
 	}
 </script>
@@ -37,7 +44,44 @@
 	>
 </svg>
 
+<section>
+	<h2>A talk by Paul Mendoza</h2>
+	<div>
+		<a href="https://github.com/qdozaq" target="_blank" rel="noopener noreferrer">github</a> |
+		<a href="https://twitter.com/qdozaq" target="_blank" rel="noopener noreferrer"> twitter</a>
+		|
+		<a href="https://www.instagram.com/qdozaq" target="_blank" rel="noopener noreferrer"
+			>instagram</a
+		>
+		- <span><i>@qdozaq</i></span>
+	</div>
+	<a
+		href="https://github.com/qdozaq/thinking-with-svelte-stores"
+		target="_blank"
+		rel="noopener noreferrer">See this project on github!</a
+	>
+</section>
+
 <style>
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		text-align: right;
+		position: absolute;
+		right: 2rem;
+		bottom: 6rem;
+	}
+
+	span {
+		color: #777;
+	}
+
+	h2 {
+		padding: 0;
+		margin: 0;
+	}
+
 	svg {
 		position: absolute;
 		pointer-events: none;

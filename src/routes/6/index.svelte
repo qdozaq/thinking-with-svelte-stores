@@ -1,107 +1,30 @@
 <script>
-	import { derived, writable } from 'svelte/store';
-	import { spring } from 'svelte/motion';
+	import { writable } from 'svelte/store';
+	import { onMount } from 'svelte/internal';
+	import Slider from './_Slider.svelte';
+	import { activeSlider } from './_progress';
 	import ReplLink from '$lib/components/ReplLink.svelte';
-
-	const mouseCoords = writable({ x: 0, y: 0 });
-	const number_of_dots = 5;
-	const dotIds = Array.from(Array(number_of_dots).keys());
-
-	const sharedSpring = spring({ x: 0, y: 0 }, { stiffness: 0.1 });
-	$: sharedSpring.set($mouseCoords);
-
-	const sharedMotionDots = dotIds.map((id) => ({
-		id,
-		coords: derived(
-			sharedSpring,
-			($c, set) => {
-				setTimeout(() => set($c), id * 100);
-			},
-			{ x: 0, y: 0 }
-		),
-		el: null
-	}));
-
-	sharedMotionDots.forEach((dot) => {
-		dot.coords.subscribe(({ x, y }) => {
-			requestAnimationFrame(() => {
-				dot.el?.setAttribute('cx', x);
-				dot.el?.setAttribute('cy', y);
-			});
-		});
-	});
-
-	const relativeMotionDots = Array.from(Array(number_of_dots).keys()).map((id) => ({
-		id,
-		delay: derived(
-			mouseCoords,
-			($c, set) => {
-				setTimeout(() => set($c), id * 100);
-			},
-			{ x: 0, y: 0 }
-		),
-		spring: spring({ x: 0, y: 0 }, { stiffness: 0.1 }),
-		el: null
-	}));
-
-	relativeMotionDots.forEach((dot) => {
-		dot.delay.subscribe((delayedValue) => {
-			let total = relativeMotionDots.length;
-			dot.spring.damping = 1 - ((dot.id / total) * 0.5 + 0.45);
-			dot.spring.set(delayedValue);
-		});
-		dot.spring.subscribe((coord) => {
-			requestAnimationFrame(() => {
-				dot.el?.setAttribute('cx', coord.x);
-				dot.el?.setAttribute('cy', coord.y);
-			});
-		});
-	});
+	let sliders = Array.from(Array(10).keys());
+	onMount(() => activeSlider.set(-1));
 </script>
 
 <svelte:head>
-	<title>Dots Example</title>
+	<title>Relative Animation</title>
 </svelte:head>
 
-<ReplLink repl="https://svelte.dev/repl/cb919cefd8644e0a873a41bf1f3e2ff7?version=3.48.0" />
-<h3>
-	Shared Spring: <div class="shared square" />
-	Individual Springs:
-	<div class="relative square" />
-</h3>
-<svelte:window on:mousemove={(e) => mouseCoords.set({ x: e.clientX, y: e.clientY })} />
-<svg>
-	{#each sharedMotionDots as { el, id }}
-		<circle class="shared" bind:this={el} r={10 - id} />
-	{/each}
+<ReplLink repl="https://svelte.dev/repl/cacf6a4564e74df59caf55949220360c?version=3.48.0" />
 
-	{#each relativeMotionDots as { el, id }}
-		<circle class="relative" bind:this={el} r={10 - id} />
+<div>
+	{#each sliders as slider}
+		<Slider id={slider} total={sliders.length} />
 	{/each}
-</svg>
+</div>
 
 <style>
-	svg {
-		pointer-events: none;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
-	.relative {
-		background-color: #ff3e00;
-		fill: #ff3e00;
-	}
-
-	.shared {
-		background-color: #a600ff;
-		fill: #a600ff;
-	}
-
-	.square {
-		display: inline-block;
-		width: 1rem;
-		height: 1rem;
+	div {
+		margin: 0 3rem;
+		display: flex;
+		flex-direction: column;
+		width: auto;
 	}
 </style>

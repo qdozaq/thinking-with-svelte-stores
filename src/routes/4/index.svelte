@@ -1,22 +1,20 @@
 <script>
-	import { writable } from 'svelte/store';
-	import { onMount } from 'svelte/internal';
-	import Slider from './_Slider.svelte';
-	import { activeSlider } from './_progress';
+	import { progress } from './_progress';
+	import Bar from './_Bar.svelte';
 	import ReplLink from '$lib/components/ReplLink.svelte';
-	let sliders = Array.from(Array(10).keys());
-	onMount(() => activeSlider.set(-1));
+
+	let bars = Array.from(Array(10).keys());
 </script>
 
 <svelte:head>
-	<title>Relative Animation</title>
+	<title>Staggered Animations</title>
 </svelte:head>
-
-<ReplLink repl="https://svelte.dev/repl/cacf6a4564e74df59caf55949220360c?version=3.48.0" />
+<ReplLink repl="https://svelte.dev/repl/70789a16b8964698bb4efc049df5c607?version=3.48.0" />
 
 <div>
-	{#each sliders as slider}
-		<Slider id={slider} total={sliders.length} />
+	<input type="range" max="1000" bind:value={$progress} />
+	{#each bars as bar}
+		<Bar delay={bar * 100} />
 	{/each}
 </div>
 
@@ -26,5 +24,8 @@
 		display: flex;
 		flex-direction: column;
 		width: auto;
+	}
+	div > * {
+		width: 100%;
 	}
 </style>

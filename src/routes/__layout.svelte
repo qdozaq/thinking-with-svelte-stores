@@ -59,6 +59,12 @@
 	}
 </script>
 
+<svelte:window
+	on:resize|={() => {
+		width = el.offsetWidth;
+	}}
+/>
+
 <nav>
 	<div class="selector" style:width="{width}px" style:transform="translateX({$position}px)" />
 	<a bind:this={el} class:selected={'' === $page.routeId} href="/">0</a>
@@ -83,6 +89,11 @@
 <style>
 	main {
 		margin: 1rem;
+	}
+
+	h1 {
+		margin: 0;
+		padding: 0;
 	}
 	nav {
 		z-index: 2;
