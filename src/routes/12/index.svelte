@@ -1,9 +1,10 @@
 <script>
+	import { onMount } from 'svelte';
+
+	import Container from './_Container.svelte';
 	import { getDocHeight, getWindowHeight, progress } from './_utils';
 
 	let winHeight = 0;
-	let prevDrag = 0;
-	let prevDirection = 0;
 
 	function handleResize() {
 		winHeight = getWindowHeight();
@@ -12,8 +13,6 @@
 
 	function handleScroll(e) {
 		const direction = Math.sign(e.deltaY);
-		// if (direction !== prevDirection) throttledScroll.cancel();
-		prevDirection = direction;
 
 		updateProgress(3 * direction);
 	}
@@ -24,10 +23,20 @@
 			return p > 100 ? 100 : p < 0 ? 0 : p;
 		});
 	}
+
+	onMount(() => {
+		winHeight = getWindowHeight() || getDocHeight();
+	});
 </script>
+
+<svelte:head>
+	<title>Virtual Scrolling</title>
+</svelte:head>
 
 <svelte:window
 	on:wheel|passive={handleScroll}
 	on:resize|passive={handleResize}
 	on:orientationchange|passive={handleResize}
 />
+<h2>Amount scrolled: {$progress}%</h2>
+<Container {winHeight} />
