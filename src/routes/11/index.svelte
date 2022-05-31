@@ -6,7 +6,6 @@
 	import Container from './_Container.svelte';
 	import { getDocHeight, getWindowHeight, progress } from './_utils';
 
-	const scrollMultiplier = 3;
 	let winHeight = 0;
 
 	function handleResize() {
@@ -17,13 +16,15 @@
 	function handleScroll(e) {
 		const direction = Math.sign(e.deltaY);
 
-		updateProgress(scrollMultiplier * direction);
+		updateProgress(direction);
 	}
 
 	function updateProgress(dy) {
-		progress.update((prog) => {
-			const p = prog + dy;
-			return p > 100 ? 100 : p < 0 ? 0 : p;
+		requestAnimationFrame(() => {
+			progress.update((prog) => {
+				const p = prog + dy;
+				return p > 100 ? 100 : p < 0 ? 0 : p;
+			});
 		});
 	}
 
