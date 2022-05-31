@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 
 	export let title;
+	export let image;
 	export let position = 0;
 	export let index = 0;
 	export let tPos = 0;
@@ -15,12 +16,12 @@
 </script>
 
 <!-- after mounting use the position calculated off of window instead of css to avoid page jumping on mobile -->
-<section style="top: {mounted ? `${position}px` : `calc(100vh * ${index} + 50%)`};">
+<section style:top={mounted ? `${position}px` : `calc(100vh * ${index} + 50%)`}>
 	<div class="grid">
-		<div style="transform: translateY({cPos}px)" class="content">
-			<slot />
+		<div style:transform="translateY({cPos}px)" class="content">
+			<img alt={title} src={image} />
 		</div>
-		<h1 style="transform: translateY({tPos}px)">{title}</h1>
+		<h1 style:transform="translateY({tPos}px)">{title}</h1>
 	</div>
 </section>
 

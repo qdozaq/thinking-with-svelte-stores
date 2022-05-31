@@ -27,11 +27,3 @@ export function roundToNearestMultiple(n, multiple) {
 
 	return nearest;
 }
-
-/**
- * Round the given number down to the nearest multiple.
- * @example roundDownToMultiple(43, 5) == 40
- */
-export function roundDownToMultiple(n, m) {
-	return Math.floor(n / m) * m;
-}
