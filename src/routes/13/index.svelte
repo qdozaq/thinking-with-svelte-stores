@@ -23,6 +23,16 @@
 			rel="noopener noreferrer">LinkedIn</a
 		>
 	</section>
+	<section>
+		<h2>Additional Resources</h2>
+		<a href="https://svelte.dev/docs#run-time-svelte-store">Svelte Docs</a>
+		<a href="https://www.youtube.com/playlist?list=PLoKaNN3BjQX3fG-XOSwsPHtnV8FUY6lgK"
+			>@lihautan's Svelte Stores course</a
+		>
+		<a href="https://youtu.be/qqj2cBockqE?t=3977"
+			>Tackle Complex Async Behavior with Svelte Stores</a
+		>
+	</section>
 </div>
 
 <style>

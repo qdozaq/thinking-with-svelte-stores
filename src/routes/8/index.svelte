@@ -2,6 +2,7 @@
 	import { derived, writable } from 'svelte/store';
 	import { spring } from 'svelte/motion';
 	import ReplLink from '$lib/components/ReplLink.svelte';
+	import { browser } from '$app/env';
 
 	const mouseCoords = writable({ x: 0, y: 0 });
 	const number_of_dots = 5;
@@ -24,10 +25,11 @@
 
 	sharedMotionDots.forEach((dot) => {
 		dot.coords.subscribe(({ x, y }) => {
-			requestAnimationFrame(() => {
-				dot.el?.setAttribute('cx', x);
-				dot.el?.setAttribute('cy', y);
-			});
+			browser &&
+				requestAnimationFrame(() => {
+					dot.el?.setAttribute('cx', x);
+					dot.el?.setAttribute('cy', y);
+				});
 		});
 	});
 
@@ -51,10 +53,11 @@
 			dot.spring.set(delayedValue);
 		});
 		dot.spring.subscribe((coord) => {
-			requestAnimationFrame(() => {
-				dot.el?.setAttribute('cx', coord.x);
-				dot.el?.setAttribute('cy', coord.y);
-			});
+			browser &&
+				requestAnimationFrame(() => {
+					dot.el?.setAttribute('cx', coord.x);
+					dot.el?.setAttribute('cy', coord.y);
+				});
 		});
 	});
 </script>

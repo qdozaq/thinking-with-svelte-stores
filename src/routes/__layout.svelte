@@ -60,6 +60,14 @@
 </script>
 
 <svelte:window
+	on:keydown={(e) => {
+		switch (e.key) {
+			case 'ArrowRight':
+				return forward();
+			case 'ArrowLeft':
+				return back();
+		}
+	}}
 	on:resize|={() => {
 		width = el.offsetWidth;
 	}}
