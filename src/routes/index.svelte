@@ -5,7 +5,7 @@
 	import { spring } from 'svelte/motion';
 
 	const baseOffest = { x: 50, y: 50 };
-	const mouseCoords = spring(baseOffest, { stiffness: 0.005, damping: 0.1 });
+	const mouseCoords = spring({ x: 0, y: 0 }, { stiffness: 0.005, damping: 0.1 });
 
 	const inc = 100;
 	let c1 = getDelayed(inc);

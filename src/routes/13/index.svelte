@@ -47,8 +47,17 @@
 		flex-direction: column;
 	}
 
+	section {
+		width: 40rem;
+		text-align: center;
+		gap: 0.5rem;
+	}
+
 	div {
 		gap: 1rem;
 		margin-top: 1rem;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
 	}
 </style>
